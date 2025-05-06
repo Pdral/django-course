@@ -1,0 +1,20 @@
+{
+    "python.languageServer": "Pylance",
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        79
+    ], // boa prática para Python (PEP8)
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    }
+}
