@@ -4,9 +4,9 @@ This is a repo created to follow the course "Python Django - The Practical Guide
 
 # Useful CLI commands for Django
 
-django-admin startproject <project-name>
+django-admin startproject `project-name`
 
-python manage.py startapp <app-name>
+python manage.py startapp `app-name`
 
 python manage.py runserver
 
