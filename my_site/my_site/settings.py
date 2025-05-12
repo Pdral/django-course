@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^^fn&btftk8ty0hk-u^jb9(1b5o7rsb_o@je)aokj-5mcs=wcs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = getenv("IS_DEVELOPMENT", False)
 
 ALLOWED_HOSTS = [
-    getenv("APP_HOST")
+    getenv("APP_HOST", "localhost")
 ]
 
 
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'blog',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,7 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
@@ -139,3 +140,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
+
+AWS_STORAGE_BUCKET_NAME = "django-blog-course3145341"
+AWS_S3_REGION_NAME = "us-east-2"
+AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = getenv("AWS_SECRET_ACCESS_KEY")
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+STATICFILES_FOLDER = "static"
+MEDIAFILES_FOLDER = "media"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "custom_storages.MediaFileStorage"
+    },
+    "staticfiles": {
+        "BACKEND": "custom_storages.StaticFileStorage"
+    },
+}
